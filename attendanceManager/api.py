@@ -55,23 +55,6 @@ cursor.execute('''
     )''')
 conn.commit()
 
-def remove_duplicate_attendance():
-    try:
-        cursor.execute("""
-            DELETE FROM attendance
-            WHERE id NOT IN (
-                SELECT MIN(id)
-                FROM attendance
-                GROUP BY employee_id, date
-            )
-        """)
-        conn.commit()
-        print("Duplicate rows deleted successfully.")
-    except psycopg2.Error as e:
-        conn.rollback()
-        print(f"Database error: {e}")
-remove_duplicate_attendance()
-
 # Pydantic models
 class AttendanceEntry(BaseModel):
     employee_id: int
