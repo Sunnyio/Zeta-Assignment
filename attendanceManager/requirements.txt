@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-dotenv
+psycopg2
+pydantic
+anthropic
+openai
+google-generativeai
+tenacity
+google-genai
